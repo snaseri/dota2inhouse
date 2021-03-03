@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>  <script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<form action="#" th:action="@{/match/add}" th:object="${match}" th:fragment="form" method="POST">
+    <!-- Title-->
+    <!-- Players -->
+    <div class="form-group">
+        <label th:name="*{matchMode}">Game Mode</label>
+        <select class="form-control" th:field="*{matchMode}">
+            <option th:value="'Single Draft'" th:text="'Single Draft'"></option>
+            <option th:value="'All Pick'" th:text="'All Pick'"></option>
+            <option th:value="'Captian Draft'" th:text="'Captian Draft'"></option>
+            <option th:value="'All Random'" th:text="'All Random'"></option>
+        </select>
+        <div class="alert alert-danger" th:errors="*{matchMode}" th:if="${#fields.hasErrors('matchMode')}"></div>
+    </div>
+</form>
+<br>
+</body>
+
+
+</html>
+
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>course:</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+      <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+            integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
+  </head>
+  <body>
+
+    <div th:replace=" fragments/navbar.html :: navbar">
+      <!-- Navigation -->
+    </div>
+
+    <div th:replace=" fragments/headercourse.html :: header">
+      <!-- Header -->
+    </div>
+
+    <div th:replace=" fragments/search.html :: search">
+        <!-- Page Search-->
+    </div>
+
+
+    <div class="container">
+
+
+        <small>Course name</small>
+        <p th:text="*{course.name}"></p>
+        <small>Description</small>
+        <p th:text="*{course.description}"></p>
+        <small>Price</small>
+        <div th:if="${course.price > 0}"><p th:text="${'£' + #numbers.formatDecimal(course.price, 0, 'COMMA', 2, 'POINT')}"></p></div>
+        <div th:if="${course.price == 0}"><p>Free</p></div>
+        <small>Course Date</small>
+        <p th:text="*{course.date}"></p>
+        <small>Course Skill</small>
+        <p th:text="*{course.skillId.getName()}"></p>
+        <small>Number of users enrolled</small>
+        <p th:text="*{enrolled}"></p>
+        <form  th:object="${course}" method="post">
+        <button class="btn btn-primary" type="submit" formmethod="post">Enroll</button>
+            <br>
+            <div id=missingEnrollMessage th:if="${enrollmessage !=  null }">
+                <p class="font-weight-light list-group-item position-relative" th:text="${enrollmessage}"></p>
+            </div>
+        </form>
+    </div>
+
+
+
+
+  </body>
+</html>

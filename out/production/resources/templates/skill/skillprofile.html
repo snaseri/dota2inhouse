@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Profile</title>
+    <link href="css/starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
+
+    <style>
+        #courseDropdown, #userDropdown, #advertDropdown {display: none;}
+    </style>
+</head>
+<body>
+
+
+<div th:replace=" fragments/navbar.html :: navbar">
+    <!-- Navigation -->
+</div>
+
+<header class="title" th:fragment="navbar">
+    <div class="container">
+        <h1 class="title--header white" th:text="${skillKey.name}">SkillsDB</h1>
+        <h6 class="font-weight-light text-sm-left white" th:text="${skillKey.description}">Discover</h6>
+    </div>
+</header>
+
+<div id=missingCourseMessage th:if="${skillKey ==  null }">
+    <div>No matching skill</div>
+</div>
+
+<main class="container mt-4" role="main">
+    <div class="starter-template">
+        <div id=skillInfo th:if="${skillKey}">
+            <div class="col-md">
+                <p th:if="${not #lists.isEmpty(parentKey)}"><b>Based of the skill:</b></p>
+                <div>
+                    <ul>
+                        <li th:each="taxonomy: ${parentKey}"><a th:href="@{/skill/{id} (id=${taxonomy.parent.getName()})}"
+                                                               th:text="${taxonomy.parent.getName()}" ></a></li>
+                    </ul>
+                </div>
+                <p th:if="${not #lists.isEmpty(childKey)}"><b>Sub-skill of:</b></p>
+                <div>
+                    <ul>
+                        <li th:each="taxonomy: ${childKey}"><a th:href="@{/skill/{id} (id=${taxonomy.child.getName()})}"
+                                                               th:text="${taxonomy.child.getName()}" ></a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="dropdown">
+    <button onclick="courseToggle()" class="btn btn-outline-info position-relative">Avaliable Courses</button>
+    <div id="courseDropdown" class="dropdown-content">
+        <div th:if="${#lists.isEmpty(courseKey)}">
+            <div>There are currently no available courses for this skill</div>
+        </div>
+        <div th:if="${not #lists.isEmpty(courseKey)}">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Course Name</th>
+            <th scope="col">Description </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="currCourse : ${courseKey}">
+            <th scope="row">
+                <a th:href="@{/courses/{id} (id=${currCourse.id})}"
+                   th:id="'courseLink'+ ${currCourse.id}">
+                    <span th:text="${currCourse.name}"></span>
+                </a>
+            </th>
+            <td th:text="${currCourse.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+</div>
+
+    <div class="dropdown">
+        <button onclick="userToggle()" class="btn btn-outline-info position-relative">Users with this skill</button>
+        <div id="userDropdown" class="dropdown-content">
+            <div th:if="${#lists.isEmpty(userKey)}">
+                <div>There are currently no available users for this skill</div>
+            </div>
+            <div th:if="${not #lists.isEmpty(userKey)}">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">User Name</th>
+<!--                        <th scope="col">Description</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="currUser : ${userKey}">
+                        <th scope="row">
+                            <a th:href="@{/profile/{id} (id=${currUser.username})}"
+                               th:id="'userLink'+ ${currUser.username}">
+                                <span th:text="${currUser.username}"></span>
+                            </a>
+                        </th>
+                        <td th:text="${currUser.username}"></td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button onclick="advertToggle()" class="btn btn-outline-info position-relative">Adverts for Skill</button>
+        <div id="advertDropdown" class="dropdown-content">
+            <div th:if="${#lists.isEmpty(advertKey)}">
+                <div>There are currently no available adverts for this skill</div>
+            </div>
+            <div th:if="${not #lists.isEmpty(advertKey)}">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Advert Name</th>
+                        <th scope="col">Description </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="currAdvert : ${advertKey}">
+                        <th scope="row">
+                            <a th:href="@{/advert/{id} (id=${currAdvert.id})}"
+                               th:id="'advertLink'+ ${currAdvert.id}">
+                                <span th:text="${currAdvert.title}"></span>
+                            </a>
+                        </th>
+                        <td th:text="${currAdvert.description}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+<script>
+    function userToggle() {
+        var x = document.getElementById("userDropdown");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function courseToggle() {
+        var x = document.getElementById("courseDropdown");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function advertToggle() {
+        var x = document.getElementById("advertDropdown");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+
+</html>

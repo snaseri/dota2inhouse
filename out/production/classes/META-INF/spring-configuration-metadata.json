@@ -1,0 +1,12 @@
+{
+  "groups": [
+    {
+      "name": "mysql.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "uk.ac.cf.cs.ons.skillsdb.skillsdb.users.configuration.BeanConfig",
+      "sourceMethod": "getDataSource()"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

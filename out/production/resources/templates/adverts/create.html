@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <title>Create an Advert</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+  </head>
+  <body>
+
+    <div th:replace=" fragments/navbar.html :: navbar">
+      <!-- Navigation -->
+    </div>
+
+    <div th:replace=" fragments/header.html :: header">
+      <!-- Header -->
+    </div>
+
+    <nav th:replace=" fragments/navbar.html :: pagebar">
+      <!-- Page Navbar -->
+    </nav>
+
+    <div th:replace=" fragments/search.html :: search">
+      <!-- Page Search-->
+    </div>
+
+    <div class="row">
+      <div class="container">
+
+
+
+        <h3 class="black">Create a Advert</h3>
+        <div class="col-sm">
+          <form th:replace=" adverts/form :: form">
+            <!-- Form -->
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

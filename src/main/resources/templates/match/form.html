@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>  <script src="jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <form action="#" th:action="@{/match/add}" th:object="${played10}" th:fragment="form" method="POST">
+      <h2 class="text-success">Radient</h2>
+      <div class="form-row ">
+        <!-- isWon -->
+        <div class="form-group form-check">
+          <input aria-describedby="Declare winner team"
+                 class="form-check-input"
+                 th:field="*{isWon}"
+                 type="checkbox"/>
+          <label class="form-check-label"
+                 th:for="isWon">
+            Please tick this box if the RADIENT won.
+          </label>
+        </div>
+      </div>
+<!--             <p>Dire </p>-->
+<!--               <input class="form-check"-->
+<!--                type="checkbox"-->
+<!--                name="isRadientWinner"-->
+<!--                th:checked="${isDireWinner}"/>-->
+
+      </div>
+      <div class="form-row">
+      <!-- Players -->
+      <div class="form-group">
+        <label th:name="*{playerId}">Player</label>
+        <select class="form-control" th:field="*{playerId}">
+          <option value="0">Please select a Player</option>
+          <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+        </select>
+        <div class="alert alert-danger" th:errors="*{playerId}" th:if="${#fields.hasErrors('playerId')}"></div>
+      </div>
+      <!-- Kills-->
+      <div class="form-group">
+        <label th:name="*{kills}">Kills</label>
+        <input class="form-control" type="number" th:field="*{kills}">
+        <div class="alert alert-danger" th:errors="*{kills}" th:if="${#fields.hasErrors('kills')}"></div>
+      </div>
+      <!-- Deaths -->
+      <div class="form-group">
+        <label th:name="*{deaths}">Deaths</label>
+        <input class="form-control" type="number" th:field="*{deaths}">
+        <div class="alert alert-danger" th:errors="*{deaths}" th:if="${#fields.hasErrors('deaths')}"></div>
+      </div>
+      <!-- Assists -->
+      <div class="form-group">
+        <label th:name="*{assists}">Assists</label>
+        <input class="form-control" type="number" th:field="*{assists}">
+        <div class="alert alert-danger" th:errors="*{assists}" th:if="${#fields.hasErrors('assists')}"></div>
+      </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole}">Role</label>
+          <select class="form-control" th:field="*{playerRole}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole}" th:if="${#fields.hasErrors('playerRole')}"></div>
+        </div>
+
+
+        <br>
+
+
+<!--  NEW PLAYER  1   -->
+
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId1}">Player</label>
+          <select class="form-control" th:field="*{playerId1}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId1}" th:if="${#fields.hasErrors('playerId1')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills1}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills1}">
+          <div class="alert alert-danger" th:errors="*{kills1}" th:if="${#fields.hasErrors('kills1')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths1}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths1}">
+          <div class="alert alert-danger" th:errors="*{deaths1}" th:if="${#fields.hasErrors('deaths1')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists1}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists1}">
+          <div class="alert alert-danger" th:errors="*{assists1}" th:if="${#fields.hasErrors('assists1')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole1}">Role</label>
+          <select class="form-control" th:field="*{playerRole1}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole1}" th:if="${#fields.hasErrors('playerRole1')}"></div>
+        </div>
+
+        <!--  NEW PLAYER   2  -->
+
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId2}">Player</label>
+          <select class="form-control" th:field="*{playerId2}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId2}" th:if="${#fields.hasErrors('playerId2')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills2}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills2}">
+          <div class="alert alert-danger" th:errors="*{kills2}" th:if="${#fields.hasErrors('kills2')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths2}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths2}">
+          <div class="alert alert-danger" th:errors="*{deaths2}" th:if="${#fields.hasErrors('deaths2')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists2}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists2}">
+          <div class="alert alert-danger" th:errors="*{assists2}" th:if="${#fields.hasErrors('assists2')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole2}">Role</label>
+          <select class="form-control" th:field="*{playerRole2}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole2}" th:if="${#fields.hasErrors('playerRole2')}"></div>
+        </div>
+
+        <br>
+        <!--  NEW PLAYER 3    -->
+
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId3}">Player</label>
+          <select class="form-control" th:field="*{playerId3}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId3}" th:if="${#fields.hasErrors('playerId3')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills3}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills3}">
+          <div class="alert alert-danger" th:errors="*{kills3}" th:if="${#fields.hasErrors('kills3')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths3}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths3}">
+          <div class="alert alert-danger" th:errors="*{deaths3}" th:if="${#fields.hasErrors('deaths3')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists3}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists3}">
+          <div class="alert alert-danger" th:errors="*{assists3}" th:if="${#fields.hasErrors('assists3')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole3}">Role</label>
+          <select class="form-control" th:field="*{playerRole3}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole3}" th:if="${#fields.hasErrors('playerRole3')}"></div>
+        </div>
+
+        <br>
+        <!--  NEW PLAYER 4    -->
+
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId4}">Player</label>
+          <select class="form-control" th:field="*{playerId4}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId4}" th:if="${#fields.hasErrors('playerId4')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills4}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills4}">
+          <div class="alert alert-danger" th:errors="*{kills4}" th:if="${#fields.hasErrors('kills4')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths4}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths4}">
+          <div class="alert alert-danger" th:errors="*{deaths4}" th:if="${#fields.hasErrors('deaths4')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists4}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists4}">
+          <div class="alert alert-danger" th:errors="*{assists4}" th:if="${#fields.hasErrors('assists4')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole4}">Role</label>
+          <select class="form-control" th:field="*{playerRole4}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole4}" th:if="${#fields.hasErrors('playerRole4')}"></div>
+        </div>
+
+      </div>
+<!--        - -->
+<!--        DIRE-->
+<!--        - -->
+
+        <div class="form-group .inline-form inline-form">
+        <h2 class="text-danger">Dire</h2>
+        </div>
+
+      <div class="form-row">
+        <!--  NEW PLAYER  5   -->
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId5}">Player</label>
+          <select class="form-control" th:field="*{playerId5}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId5}" th:if="${#fields.hasErrors('playerId5')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills5}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills5}">
+          <div class="alert alert-danger" th:errors="*{kills5}" th:if="${#fields.hasErrors('kills5')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths5}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths5}">
+          <div class="alert alert-danger" th:errors="*{deaths5}" th:if="${#fields.hasErrors('deaths5')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists5}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists5}">
+          <div class="alert alert-danger" th:errors="*{assists5}" th:if="${#fields.hasErrors('assists5')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole5}">Role</label>
+          <select class="form-control" th:field="*{playerRole5}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole5}" th:if="${#fields.hasErrors('playerRole5')}"></div>
+        </div>
+
+
+        <br>
+
+        <!--  NEW PLAYER  6   -->
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId6}">Player</label>
+          <select class="form-control" th:field="*{playerId6}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId6}" th:if="${#fields.hasErrors('playerId6')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills6}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills6}">
+          <div class="alert alert-danger" th:errors="*{kills6}" th:if="${#fields.hasErrors('kills6')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths6}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths6}">
+          <div class="alert alert-danger" th:errors="*{deaths6}" th:if="${#fields.hasErrors('deaths6')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists6}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists6}">
+          <div class="alert alert-danger" th:errors="*{assists6}" th:if="${#fields.hasErrors('assists6')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole6}">Role</label>
+          <select class="form-control" th:field="*{playerRole6}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole6}" th:if="${#fields.hasErrors('playerRole6')}"></div>
+        </div>
+
+        <br>
+
+        <!--  NEW PLAYER  7   -->
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId7}">Player</label>
+          <select class="form-control" th:field="*{playerId7}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId7}" th:if="${#fields.hasErrors('playerId7')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills7}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills7}">
+          <div class="alert alert-danger" th:errors="*{kills7}" th:if="${#fields.hasErrors('kills7')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths7}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths7}">
+          <div class="alert alert-danger" th:errors="*{deaths7}" th:if="${#fields.hasErrors('deaths7')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists7}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists7}">
+          <div class="alert alert-danger" th:errors="*{assists7}" th:if="${#fields.hasErrors('assists7')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole7}">Role</label>
+          <select class="form-control" th:field="*{playerRole7}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole7}" th:if="${#fields.hasErrors('playerRole7')}"></div>
+        </div>
+
+        <br>
+
+        <!--  NEW PLAYER  8   -->
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId8}">Player</label>
+          <select class="form-control" th:field="*{playerId8}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId8}" th:if="${#fields.hasErrors('playerId8')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills8}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills8}">
+          <div class="alert alert-danger" th:errors="*{kills8}" th:if="${#fields.hasErrors('kills8')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths8}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths8}">
+          <div class="alert alert-danger" th:errors="*{deaths8}" th:if="${#fields.hasErrors('deaths8')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists8}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists8}">
+          <div class="alert alert-danger" th:errors="*{assists8}" th:if="${#fields.hasErrors('assists8')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole8}">Role</label>
+          <select class="form-control" th:field="*{playerRole8}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole8}" th:if="${#fields.hasErrors('playerRole8')}"></div>
+        </div>
+
+        <br>
+
+        <!--  NEW PLAYER  9  -->
+        <!-- Players -->
+        <div class="form-group">
+          <label th:name="*{playerId9}">Player</label>
+          <select class="form-control" th:field="*{playerId9}">
+            <option value="0">Please select a Player</option>
+            <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerId9}" th:if="${#fields.hasErrors('playerId9')}"></div>
+        </div>
+        <!-- Kills-->
+        <div class="form-group">
+          <label th:name="*{kills9}">Kills</label>
+          <input class="form-control" type="number" th:field="*{kills9}">
+          <div class="alert alert-danger" th:errors="*{kills9}" th:if="${#fields.hasErrors('kills9')}"></div>
+        </div>
+        <!-- Deaths -->
+        <div class="form-group">
+          <label th:name="*{deaths9}">Deaths</label>
+          <input class="form-control" type="number" th:field="*{deaths9}">
+          <div class="alert alert-danger" th:errors="*{deaths9}" th:if="${#fields.hasErrors('deaths9')}"></div>
+        </div>
+        <!-- Assists -->
+        <div class="form-group">
+          <label th:name="*{assists9}">Assists</label>
+          <input class="form-control" type="number" th:field="*{assists9}">
+          <div class="alert alert-danger" th:errors="*{assists9}" th:if="${#fields.hasErrors('assists9')}"></div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole9}">Role</label>
+          <select class="form-control" th:field="*{playerRole9}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole9}" th:if="${#fields.hasErrors('playerRole9')}"></div>
+        </div>
+
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </body>
+
+
+</html>
+
+
+

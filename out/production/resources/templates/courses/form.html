@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>  <script src="jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <form action="#" th:action="@{/course/create}" th:object="${course}" th:fragment="form" method="POST">
+      <!-- Title-->
+      <div class="form-group">
+        <label th:name="*{name}">Name</label>
+        <input class="form-control" type="text" th:field="*{name}">
+        <div class="alert alert-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></div>
+      </div>
+      <!-- Description -->
+      <div class="form-group">
+        <label th:name="*{description}">Description</label>
+        <textarea class="form-control" type="text" th:field="*{description}">
+        </textarea>
+        <div class="alert alert-danger" th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></div>
+      </div>
+      <!-- isFree -->
+      <div class="form-group form-check">
+        <input onclick="myFunction()" id="freeBox" aria-describedby="Please enter the amount you would like to donate"
+               class="form-check-input"
+               th:field="*{isFree}"
+               type="checkbox"/>
+        <label class="form-check-label"
+               th:for="isFree">
+          Please tick this box to confirm the course is free to attend
+        </label>
+      </div>
+      <!-- Price -->
+      <div class="form-group" id="priceSection">
+        <label th:name="*{price}">Price</label>
+        <textarea id="priceInput" class="form-control" type="number" th:field="*{price}">
+        </textarea>
+        <div class="alert alert-danger" th:errors="*{price}" th:if="${#fields.hasErrors('description')}"></div>
+      </div>
+      <!-- Date -->
+      <div class="form-group">
+        <label th:name="*{date}">Date</label>
+        <input class="form-control" type="date" th:field="*{date}">
+        </input>
+        <div class="alert alert-danger" th:errors="*{date}" th:if="${#fields.hasErrors('date')}"></div>
+      </div>
+      <!-- Skills -->
+      <div class="form-group">
+        <label th:name="*{skillId}">Skill</label>
+        <select class="form-control" th:field="*{skillId}">
+          <option value="0">Please select a Skill</option>
+          <option th:each="skill: ${skills}" th:value="${skill.id}" th:text="${skill.name}"></option>
+        </select>
+        <div class="alert alert-danger" th:errors="*{skillId}" th:if="${#fields.hasErrors('skillId')}"></div>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </body>
+
+
+</html>
+
+
+

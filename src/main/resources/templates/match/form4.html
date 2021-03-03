@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>  <script src="jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <form action="#" th:action="@{/match/add}" th:object="${played4}" th:fragment="form" method="POST">
+      <div class="form-row">
+      <!-- Players -->
+      <div class="form-group">
+        <label th:name="*{playerId}">Player</label>
+        <select class="form-control" th:field="*{playerId}">
+          <option value="0">Please select a Player</option>
+          <option th:each="player: ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+        </select>
+        <div class="alert alert-danger" th:errors="*{playerId}" th:if="${#fields.hasErrors('playerId')}"></div>
+      </div>
+      <!-- Kills-->
+      <div class="form-group">
+        <label th:name="*{kills}">Kills</label>
+        <input class="form-control" type="number" th:field="*{kills}">
+        <div class="alert alert-danger" th:errors="*{kills}" th:if="${#fields.hasErrors('kills')}"></div>
+      </div>
+      <!-- Deaths -->
+      <div class="form-group">
+        <label th:name="*{deaths}">Deaths</label>
+        <input class="form-control" type="number" th:field="*{deaths}">
+        <div class="alert alert-danger" th:errors="*{deaths}" th:if="${#fields.hasErrors('deaths')}"></div>
+      </div>
+      <!-- Assists -->
+      <div class="form-group">
+        <label th:name="*{assists}">Assists</label>
+        <input class="form-control" type="number" th:field="*{assists}">
+        <div class="alert alert-danger" th:errors="*{assists}" th:if="${#fields.hasErrors('assists')}"></div>
+      </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label th:name="*{playerRole}">Role</label>
+          <select class="form-control" th:field="*{playerRole}">
+            <option th:value="'Hard Support'" th:text="'Hard Support'"></option>
+            <option th:value="'Support'" th:text="'Support'"></option>
+            <option th:value="'Offlane'" th:text="'Offlane'"></option>
+            <option th:value="'Midlane'" th:text="'Midlane'"></option>
+            <option th:value="'Carry'" th:text="'Carry'"></option>
+          </select>
+          <div class="alert alert-danger" th:errors="*{playerRole}" th:if="${#fields.hasErrors('playerRole')}"></div>
+        </div>
+
+      <!-- isWon -->
+      <div class="form-group form-check">
+        <input aria-describedby="Declare winner team"
+               class="form-check-input"
+               th:field="*{isWon}"
+               type="checkbox"/>
+        <label class="form-check-label"
+               th:for="isWon">
+          Please tick this box if the player won.
+        </label>
+      </div>
+      </div>
+
+<!--      <button class="btn btn-primary" type="submit">Submit</button>-->
+    </form>
+  </body>
+
+
+</html>
+
+
+

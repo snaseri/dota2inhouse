@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div class="container search" th:fragment="search">
+        <h3 class="text-dark">Search:</h3>
+        <form method="POST" th:action="@{/search/}">
+            <div class="form-row">
+                <div class="col-7">
+                    <input class="form-control" type="text" id="term" name="term" placeholder="Python, Java">
+                </div>
+                <div class="col-4">
+                    <select class="form-control" id="type" name="type">
+                        <option value="USER">User</option>
+                        <option value="ADVERT">Advert</option>
+                        <option value="COURSE">Course</option>
+                    </select>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-primary float-right" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+
+

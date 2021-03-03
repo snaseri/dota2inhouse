@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Template</title>
+</head>
+<body>
+
+<div class="container-fluid" th:fragment="navbar">
+  <div class="header">
+    <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <img class="header--logo" src="#" th:src="@{/img/logo.png}" alt="Office of National Statistics Logo">
+      </div>
+        <div class="col-sm">
+          <!-- TODO -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" th:fragment="pagebar">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/advert/create}">Create Advert</a>
+    </li>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/course/create}">Create Course</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/discover}">Discover a new skill</a>
+    </li>
+  </ul>
+</div>
+
+
+</body>
+</html>

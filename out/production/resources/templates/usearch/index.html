@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Advert:</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace=" fragments/navbar.html :: navbar">
+    <!-- Navigation -->
+</div>
+
+<div th:replace=" fragments/header.html :: header">
+    <!-- Header -->
+</div>
+
+<div th:replace=" fragments/navbar.html :: pagebar">
+    <!-- Page Navbar -->
+</div>
+
+<div th:replace=" fragments/search.html :: search">
+    <!-- Page Search-->
+</div>
+
+<div class="row" th:if="${#lists.isEmpty(results)}">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <p>No Results</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" th:if="${not #lists.isEmpty(results)}">
+    <div class="container" th:each="result : ${results}">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${result.title}"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${result.descripion}">Card subtitle</h6>
+                <a th:href="@{${result.url}}" class="card-link">Go</a>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+</body>
+</html>
